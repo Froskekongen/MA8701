@@ -51,12 +51,68 @@ before loading any modules.
 
 
 In this repository, the file `load_tf_modules.sh` contains what is needed
-for loading a tensorflow and pytorch module. 
+for loading a tensorflow and pytorch module. To load these modules, run
+```
+source load_tf_modules.sh
+```
 
 ## Setting up the python environment
+
+To make sure that everything is as expected, we should inspect what the
+tensorflow module contains and that it works as expected.
+
+First, we load the modules that we need:
+```
+source load_tf_modules.sh
+```
+
+Then we can run an interactive python environment, `ipython`.
+In `ipython`, we check that tensorflow and pytorch is installed
+and that we can access a gpu
+```
+import tensorflow as tf
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+print(tf.__version__)
+```
+The output should indicate that a GPU is available and which version
+of tensorflow we have available.
+For torch, we do
+```
+import torch
+print(torch.cuda.is_available())
+print(torch.__version__)
+```
+
+### Creating a virtual environment
+The modules we have loaded contain the main libraries we need
+for estimating models using either tensorflow or pytorch. We
+may, however, need more libraries, and we want full control
+of what we use when we run experiments. For this we use python
+`virtualenv`. To create a virtual environment, we run
+```
+virtualenv an_environment
+```
+To use this environment instead of the "global" environment,
+we run
+```
+source an_environment/bin/activate
+```
+A problem with this environment is that we don't have access
+to all the pre-installed packages in the modules we have
+loaded with `module load`. To create an environment that
+has access to these packages, we create a virtualenv using
+the following command instead
+```
+virtualenv --system-site-packages keras_venv
+```
+
+
 
 
 ## Running code interactively
 
 
 ## Scheduling long-running code through SLURM-scripts
+
+For a detailed information on scheduling jobs using `slurm`, see
+[this page](https://slurm.schedmd.com/).
