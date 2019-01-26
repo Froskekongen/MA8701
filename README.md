@@ -116,7 +116,7 @@ rm -rf model_env/
 It is recommended to create scripts that create the virtualenvs
 rather than making them interactively. We do this in order to
 create reproducible environments. An example is given in
-`create_venv.sh`.
+`create_venv.sh`. Here we install the newest version of keras.
 
 ## Scheduling long-running code through SLURM-scripts
 
