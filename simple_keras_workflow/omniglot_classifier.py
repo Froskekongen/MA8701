@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     image_iter = datagen.flow_from_directory(args.image_folder)
 
-    for iii, (x, y) in image_iter:
+    for iii, (x, y) in enumerate(image_iter):
         if iii > 5:
             break
         print(x)
