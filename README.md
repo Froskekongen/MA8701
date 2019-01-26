@@ -90,12 +90,12 @@ may, however, need more libraries, and we want full control
 of what we use when we run experiments. For this we use python
 `virtualenv`. To create a virtual environment, we run
 ```
-virtualenv an_environment
+virtualenv model_env
 ```
 To use this environment instead of the "global" environment,
 we run
 ```
-source an_environment/bin/activate
+source model_env/bin/activate
 ```
 A problem with this environment is that we don't have access
 to all the pre-installed packages in the modules we have
@@ -103,14 +103,20 @@ loaded with `module load`. To create an environment that
 has access to these packages, we create a virtualenv using
 the following command instead
 ```
-virtualenv --system-site-packages keras_venv
+virtualenv --system-site-packages model_env
 ```
+When in this environment, we can install any package we need
+and still have access to what the module has loaded.
 
-
-
-
-## Running code interactively
-
+To delete a virtualenv (it is common make mistakes the first times),
+we delete the folder in which it has been created.
+```
+rm -rf model_env/
+```
+It is recommended to create scripts that create the virtualenvs
+rather than making them interactively. We do this in order to
+create reproducible environments. An example is given in
+`create_venv.sh`.
 
 ## Scheduling long-running code through SLURM-scripts
 
