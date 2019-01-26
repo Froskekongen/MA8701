@@ -19,4 +19,4 @@ if __name__ == '__main__':
     for iii, (x, y) in enumerate(image_iter):
         if iii > 5:
             break
-        print(x)
+        print(y)
