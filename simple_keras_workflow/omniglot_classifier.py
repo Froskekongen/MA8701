@@ -24,4 +24,5 @@ if __name__ == '__main__':
 
     for iii, (x, y) in enumerate(image_iter):
         if iii % 100 == 0:
-            print(x, y)
+            print(y)
+            print(iii)
