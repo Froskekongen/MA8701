@@ -20,7 +20,7 @@ if __name__ == '__main__':
                                             target_size=(224, 224)))
     image_iter = datagen.flow_from_directory(args.image_folder,
                                              subset='training',
-                                             target_size=(224, 224)
+                                             target_size=(224, 224))
 
     for iii, (x, y) in enumerate(image_iter):
         if iii > 5:
