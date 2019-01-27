@@ -15,14 +15,13 @@ if __name__ == '__main__':
         horizontal_flip=True,
         validation_split=0.2)
 
-    datagen.fit(datagen.flow_from_directory(args.image_folder,
-                                            subset='training',
-                                            target_size=(224, 224)))
+    # datagen.fit(datagen.flow_from_directory(args.image_folder,
+    #                                         subset='training',
+    #                                         target_size=(224, 224)))
     image_iter = datagen.flow_from_directory(args.image_folder,
                                              subset='training',
                                              target_size=(224, 224))
 
     for iii, (x, y) in enumerate(image_iter):
-        if iii > 5:
-            break
-        print(y)
+        if iii % 100 == 0:
+            print(x, y)
