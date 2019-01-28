@@ -1,6 +1,7 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.resnet50 import ResNet50
-from keras.layers import Dense, Dropout
+from keras.applications.vgg16 import VGG16
+from keras.layers import Dense, Dropout, Flatten
 from keras.models import Model
 from keras.optimizers import RMSprop
 from datetime import datetime
@@ -47,11 +48,12 @@ if __name__ == '__main__':
                                                     class_mode='binary',
                                                     classes=['dogs', 'cats'])
 
-    resnet50_model = ResNet50(weights=args.weights, include_top=True)
+    resnet50_model = ResNet50(weights=args.weights, include_top=False)
 
     x = resnet50_model.output
-    # x = Dense(256, activation='relu')(x)
-    # x = Dropout(0.5)(x)
+    x = Flatten(resnet50_model.output_shape[1:])(x)
+    x = Dense(256, activation='relu')(x)
+    x = Dropout(0.5)(x)
     predictions = Dense(1, activation='sigmoid')(x)
     for layer in resnet50_model.layers:
         layer.trainable = False
