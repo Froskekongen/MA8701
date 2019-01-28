@@ -2,6 +2,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.resnet50 import ResNet50
 from keras.layers import Dense, Dropout
 from keras.models import Model
+from keras.optimizers import RMSprop
 from datetime import datetime
 
 if __name__ == '__main__':
@@ -54,7 +55,8 @@ if __name__ == '__main__':
         layer.trainable = False
 
     model = Model(inputs=resnet50_model.input, outputs=predictions)
-    model.compile(optimizer='rmsprop',
+    opt = RMSprop(lr=0.0001)
+    model.compile(optimizer=opt,
                   loss='binary_crossentropy',
                   metrics=['accuracy'])
     print('Fitting a model.')
