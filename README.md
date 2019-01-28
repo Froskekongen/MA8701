@@ -153,3 +153,18 @@ purposes.
 Here, we have provided a file `schedule_job.sh`, which contains an end-to-end
 training example on the epic cluster, using the image classifier in
 `simple_image_classifier/omniglot_classifier.py`.
+
+
+## Creating a kaggle API key
+
+For experimenting with data from, e.g., kaggle, we can install the kaggle
+tool (`pip install kaggle`). But to be able to use the api, we need to obtain
+an API key.
+
+Go to `https://www.kaggle.com/USERNAME/account`. Here you can obtain an API-key.
+Copy the contents of the API key to `/home/EPIC_USERNAME/.kaggle/kaggle.json`.
+Now commands like
+```
+kaggle competitions download -c dogs-vs-cats
+```
+will work.

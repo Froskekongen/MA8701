@@ -12,7 +12,7 @@ if __name__ == '__main__':
     from argparse import ArgumentParser
     parser = ArgumentParser()
     parser.add_argument('--image_folder',
-                        default='/lustre1/projects/fs_ma8701_1/omniglot_processed')
+                        default='/lustre1/projects/fs_ma8701_1/dogsvscats')
     parser.add_argument('--weights', default='imagenet')
     parser.add_argument('--test_run', default=True)
     args = parser.parse_args()
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     train_images = datagen_train.flow_from_directory(args.image_folder + '/train',
                                                      target_size=(224, 224))
 
-    valid_images = datagen_test.flow_from_directory(args.image_folder + '/valid',
+    valid_images = datagen_test.flow_from_directory(args.image_folder + '/validation',
                                                     target_size=(224, 224))
 
     resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
