@@ -168,3 +168,20 @@ Now commands like
 kaggle competitions download -c dogs-vs-cats
 ```
 will work.
+
+
+## Mirroring external structure locally
+
+When creating experiments, it's extremely valuable to be able to test that new
+code works, without having to rely on running on a server. A reasonable way
+to mimic the external structure is to
+ * Use the same virtualenv
+ * Use the same folder structure as on the server (but with less data).
+
+On the epic cluster, we have the data folder `/lustre1/projects/fs_ma8701_1`.
+Here, I have put some example data, and will include the entire dataset for
+the project soon.
+
+It is convenient to create a `/lustre1/projects/fs_ma8701_1` folder locally,
+to avoid dealing with extra command line arguments when doing fast incremental
+code changes.

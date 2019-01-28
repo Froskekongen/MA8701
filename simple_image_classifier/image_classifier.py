@@ -1,9 +1,8 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.resnet50 import ResNet50
-from keras.applications.vgg16 import VGG16
-from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Dense, Dropout
 from keras.models import Model
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, SGD
 from datetime import datetime
 
 if __name__ == '__main__':
@@ -17,12 +16,13 @@ if __name__ == '__main__':
                         default='/lustre1/projects/fs_ma8701_1/dogsvscats')
     parser.add_argument('--weights', default='imagenet')
     parser.add_argument('--test_run', default=True)
+    parser.add_argument('--batch_size', default=16, type=int)
     args = parser.parse_args()
     start = datetime.now()
 
     if args.test_run is True:
-        n_steps = 5
-        n_steps_valid = 2
+        n_steps = 10
+        n_steps_valid = 5
     else:
         n_steps = int(749 / 10)
         n_steps_valid = 31
@@ -35,23 +35,24 @@ if __name__ == '__main__':
         rescale=1. / 255,
         shear_range=0.2,
         zoom_range=0.2,
-        horizontal_flip=True,)
+        horizontal_flip=True)
     datagen_test = ImageDataGenerator(rescale=1. / 255)
 
     train_images = datagen_train.flow_from_directory(args.image_folder + '/train',
                                                      target_size=img_size,
                                                      class_mode='binary',
-                                                     classes=['dogs', 'cats'])
+                                                     classes=['dogs', 'cats'],
+                                                     batch_size=args.batch_size)
 
     valid_images = datagen_test.flow_from_directory(args.image_folder + '/validation',
                                                     target_size=img_size,
                                                     class_mode='binary',
-                                                    classes=['dogs', 'cats'])
+                                                    classes=['dogs', 'cats'],
+                                                    batch_size=args.batch_size)
 
-    resnet50_model = ResNet50(weights=args.weights, include_top=False)
+    resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
 
     x = resnet50_model.output
-    x = Flatten(resnet50_model.output_shape[1:])(x)
     x = Dense(256, activation='relu')(x)
     x = Dropout(0.5)(x)
     predictions = Dense(1, activation='sigmoid')(x)
@@ -60,6 +61,7 @@ if __name__ == '__main__':
 
     model = Model(inputs=resnet50_model.input, outputs=predictions)
     opt = RMSprop(lr=0.0001)
+    opt = SGD(lr=1e-4, momentum=0.9)
     model.compile(optimizer=opt,
                   loss='binary_crossentropy',
                   metrics=['accuracy'])
