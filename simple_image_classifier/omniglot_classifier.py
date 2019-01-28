@@ -57,7 +57,7 @@ if __name__ == '__main__':
     print('Fitting a model.')
     model.fit_generator(train_images,
                         steps_per_epoch=n_steps,
-                        epochs=3,
+                        epochs=12,
                         verbose=1,
                         callbacks=None,
                         validation_data=valid_images,
