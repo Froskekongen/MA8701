@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument('--image_folder',
                         default='/lustre1/projects/fs_ma8701_1/omniglot_processed')
     parser.add_argument('--weights', default='imagenet')
-    parser.add_argument('--test_run', type=bool, default=True)
+    parser.add_argument('--test_run', default=True)
     args = parser.parse_args()
 
     if args.test_run is True:
@@ -65,5 +65,6 @@ if __name__ == '__main__':
                         workers=1,
                         use_multiprocessing=False,
                         shuffle=True,
-                        initial_epoch=0)
+                        initial_epoch=0,
+                        metrics=['accuracy'])
     model.save('resnet_omniglot.h5')
