@@ -26,21 +26,21 @@ if __name__ == '__main__':
     print('Doing {0} steps of training and {1} steps of validation.'.format(n_steps, n_steps_valid))
     # See https://keras.io/preprocessing/image/
     # for details.
-    datagen = ImageDataGenerator(
+    datagen_train = ImageDataGenerator(
         rescale=1. / 255,
         rotation_range=20,
         width_shift_range=0.2,
         height_shift_range=0.2,
-        horizontal_flip=True,
-        validation_split=0.2)
+        horizontal_flip=True)
+    datagen_test = ImageDataGenerator(rescale=1. / 255)
 
-    train_images = datagen.flow_from_directory(args.image_folder,
-                                               subset='training',
-                                               target_size=(224, 224))
+    train_images = datagen_train.flow_from_directory(args.image_folder + '/train',
+                                                     subset='training',
+                                                     target_size=(224, 224))
 
-    valid_images = datagen.flow_from_directory(args.image_folder,
-                                               subset='validation',
-                                               target_size=(224, 224))
+    valid_images = datagen_test.flow_from_directory(args.image_folder + '/test',
+                                                    subset='validation',
+                                                    target_size=(224, 224))
 
     resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
 
