@@ -51,7 +51,9 @@ if __name__ == '__main__':
         layer.trainable = False
 
     model = Model(inputs=resnet50_model.input, outputs=predictions)
-    model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+    model.compile(optimizer='rmsprop',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
     print('Fitting a model.')
     model.fit_generator(train_images,
                         steps_per_epoch=n_steps,
@@ -65,6 +67,5 @@ if __name__ == '__main__':
                         workers=1,
                         use_multiprocessing=False,
                         shuffle=True,
-                        initial_epoch=0,
-                        metrics=['accuracy'])
+                        initial_epoch=0)
     model.save('resnet_omniglot.h5')

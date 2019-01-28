@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --job-name="ea_omniglot_classifier"
 #SBATCH --output=omniglot.classified
-#SBATCH --partition=EPIC2
+#SBATCH --partition=EPICALL
 
 WORKDIR=${SLURM_SUBMIT_DIR}
 cd ${WORKDIR}
