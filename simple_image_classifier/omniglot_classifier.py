@@ -38,7 +38,7 @@ if __name__ == '__main__':
                                                      subset='training',
                                                      target_size=(224, 224))
 
-    valid_images = datagen_test.flow_from_directory(args.image_folder + '/test',
+    valid_images = datagen_test.flow_from_directory(args.image_folder + '/valid',
                                                     subset='validation',
                                                     target_size=(224, 224))
 
