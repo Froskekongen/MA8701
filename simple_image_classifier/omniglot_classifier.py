@@ -2,6 +2,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.resnet50 import ResNet50
 from keras.layers import Dense
 from keras.models import Model
+from datetime import datetime
 
 if __name__ == '__main__':
     """
@@ -15,6 +16,7 @@ if __name__ == '__main__':
     parser.add_argument('--weights', default='imagenet')
     parser.add_argument('--test_run', default=True)
     args = parser.parse_args()
+    start = datetime.now()
 
     if args.test_run is True:
         n_steps = 5
@@ -67,3 +69,7 @@ if __name__ == '__main__':
                         shuffle=True,
                         initial_epoch=0)
     model.save('resnet_omniglot.h5')
+    finish = datetime.now()
+    td = finish - start
+    elapsed_mins = td.total_seconds() / 60.
+    print('Total time {0}'.format(elapsed_mins))
