@@ -149,3 +149,7 @@ The `#SBATCH --time=XX:YY:ZZ` configuration sets the time limit for the job in
 `XX` hours, `YY` minutes and `ZZ` seconds. When the time limit has hit,
 the job will be killed. It's wise to set reasonable time limits for scheduling
 purposes.
+
+Here, we have provided a file `schedule_job.sh`, which contains an end-to-end
+training example on the epic cluster, using the image classifier in
+`simple_image_classifier/omniglot_classifier.py`.
