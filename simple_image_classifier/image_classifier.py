@@ -1,6 +1,6 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.resnet50 import ResNet50
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 from keras.models import Model
 from datetime import datetime
 
@@ -45,6 +45,7 @@ if __name__ == '__main__':
 
     x = resnet50_model.output
     x = Dense(256, activation='relu')(x)
+    x = Dropout(0.5)(x)
     predictions = Dense(2, activation='softmax')(x)
     for layer in resnet50_model.layers:
         layer.trainable = False
