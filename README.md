@@ -121,4 +121,31 @@ create reproducible environments. An example is given in
 ## Scheduling long-running code through SLURM-scripts
 
 For a detailed information on scheduling jobs using `slurm`, see
-[this page](https://slurm.schedmd.com/).
+[this page](https://slurm.schedmd.com/). We will only do a quick
+summary here, to get started with scheduling jobs.
+
+To submit a long-running job, we use the `sbatch` command:
+```
+sbatch some_shell_script.sh
+```
+will schedule the a job using the commands within `some_shell_script.sh`.
+
+Inside a slurm shell-script, there are some special headers that will
+serve as configuration for the scheduled job. These headers are
+prefixed by `#SBATCH`.
+
+Typical confugration parameters are which computational resources
+to use, as well as output logging, and naming of the job(s).
+
+There are some general guidelines available [here](https://www.hpc.ntnu.no/display/hpc/Getting+Started+on+Idun).
+
+For using GPUs, the following are required
+```
+#SBATCH --gres=gpu:$N_GPUs
+```
+where `$N_GPUS` is the number of gpus to require (typically 1).
+
+The `#SBATCH --time=XX:YY:ZZ` configuration sets the time limit for the job in
+`XX` hours, `YY` minutes and `ZZ` seconds. When the time limit has hit,
+the job will be killed. It's wise to set reasonable time limits for scheduling
+purposes.
