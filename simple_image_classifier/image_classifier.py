@@ -60,7 +60,6 @@ if __name__ == '__main__':
         layer.trainable = False
 
     model = Model(inputs=resnet50_model.input, outputs=predictions)
-    opt = RMSprop(lr=0.0001)
     opt = SGD(lr=1e-4, momentum=0.9)
     model.compile(optimizer=opt,
                   loss='binary_crossentropy',
