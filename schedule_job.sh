@@ -3,8 +3,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
-#SBATCH --job-name="ea_omniglot_classifier"
-#SBATCH --output=omniglot.classified
+#SBATCH --job-name="ea_image_classifier"
+#SBATCH --output=images.classified
 #SBATCH --partition=EPICALL
 
 WORKDIR=${SLURM_SUBMIT_DIR}
@@ -22,6 +22,6 @@ echo "$PWD"
 source ${WORKDIR}/load_tf_modules.sh
 source ${WORKDIR}/model_env/bin/activate
 
-python ${WORKDIR}/simple_image_classifier/omniglot_classifier.py --test_run false
+python ${WORKDIR}/simple_image_classifier/image_classifier.py --test_run false
 
 deactivate
