@@ -39,11 +39,13 @@ if __name__ == '__main__':
 
     train_images = datagen_train.flow_from_directory(args.image_folder + '/train',
                                                      target_size=img_size,
-                                                     class_mode='binary')
+                                                     class_mode='binary',
+                                                     classes=['dogs', 'cats'])
 
     valid_images = datagen_test.flow_from_directory(args.image_folder + '/validation',
                                                     target_size=img_size,
-                                                    class_mode='binary')
+                                                    class_mode='binary',
+                                                    classes=['dogs', 'cats'])
 
     resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
 
