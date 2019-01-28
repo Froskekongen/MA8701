@@ -20,7 +20,7 @@ echo "Total of $SLURM_NTASKS cores"
 echo "$PWD"
 
 source ${WORKDIR}/load_tf_modules.sh
-source ${WORKDIR}/ttenv/bin/activate
+source ${WORKDIR}/model_env/bin/activate
 
 python ${WORKDIR}/simple_image_classifier/omniglot_classifier --test_run=False
 
