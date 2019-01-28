@@ -47,11 +47,11 @@ if __name__ == '__main__':
                                                     class_mode='binary',
                                                     classes=['dogs', 'cats'])
 
-    resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
+    resnet50_model = ResNet50(weights=args.weights, include_top=True)
 
     x = resnet50_model.output
-    x = Dense(256, activation='relu')(x)
-    x = Dropout(0.5)(x)
+    # x = Dense(256, activation='relu')(x)
+    # x = Dropout(0.5)(x)
     predictions = Dense(1, activation='sigmoid')(x)
     for layer in resnet50_model.layers:
         layer.trainable = False
