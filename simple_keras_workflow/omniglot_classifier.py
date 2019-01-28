@@ -23,6 +23,8 @@ if __name__ == '__main__':
         n_steps = 52
         n_steps_valid = 13
 
+    # See https://keras.io/preprocessing/image/
+    # for details.
     datagen = ImageDataGenerator(
         rescale=1. / 255,
         rotation_range=20,
@@ -59,6 +61,6 @@ if __name__ == '__main__':
                         class_weight=None,
                         max_queue_size=10,
                         workers=1,
-                        se_multiprocessing=False,
+                        use_multiprocessing=False,
                         shuffle=True,
                         initial_epoch=0)
