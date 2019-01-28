@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     x = resnet50_model.output
     x = Dense(256, activation='relu')(x)
-    predictions = Dense(5, activation='softmax')(x)
+    predictions = Dense(136, activation='softmax')(x)
     for layer in resnet50_model.layers:
         layer.trainable = False
 
