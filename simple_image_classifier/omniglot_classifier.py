@@ -16,13 +16,14 @@ if __name__ == '__main__':
     parser.add_argument('--test_run', type=bool, default=True)
     args = parser.parse_args()
 
-    if args.test_run:
+    if args.test_run is True:
         n_steps = 5
         n_steps_valid = 2
     else:
         n_steps = 52
         n_steps_valid = 13
 
+    print('Doing {0} steps of training and {1} steps of validation.'.format(n_steps, n_steps_valid))
     # See https://keras.io/preprocessing/image/
     # for details.
     datagen = ImageDataGenerator(
