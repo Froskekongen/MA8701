@@ -35,11 +35,9 @@ if __name__ == '__main__':
     datagen_test = ImageDataGenerator(rescale=1. / 255)
 
     train_images = datagen_train.flow_from_directory(args.image_folder + '/train',
-                                                     subset='training',
                                                      target_size=(224, 224))
 
     valid_images = datagen_test.flow_from_directory(args.image_folder + '/valid',
-                                                    subset='validation',
                                                     target_size=(224, 224))
 
     resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
