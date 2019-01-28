@@ -17,3 +17,5 @@ from keras.preprocessing.image import ImageDataGenerator
 
 For the project, if you want to use all the image data,
 combining several datagenerators may be needed.
+
+A simple tutorial on this can also be found [here](https://medium.com/@vijayabhaskar96/tutorial-image-classification-with-keras-flow-from-directory-and-generators-95f75ebe5720)

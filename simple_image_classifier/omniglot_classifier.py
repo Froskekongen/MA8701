@@ -12,7 +12,7 @@ if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('--image_folder',
                         default='/lustre1/projects/fs_ma8701_1/omniglot_processed')
-    parser.add_argument('--weights', default=None)
+    parser.add_argument('--weights', default='imagenet')
     parser.add_argument('--test_run', type=bool, default=True)
     args = parser.parse_args()
 
@@ -51,9 +51,10 @@ if __name__ == '__main__':
 
     model = Model(inputs=resnet50_model.input, outputs=predictions)
     model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+    print('Fitting a model.')
     model.fit_generator(train_images,
                         steps_per_epoch=n_steps,
-                        epochs=1,
+                        epochs=3,
                         verbose=1,
                         callbacks=None,
                         validation_data=valid_images,
@@ -64,3 +65,4 @@ if __name__ == '__main__':
                         use_multiprocessing=False,
                         shuffle=True,
                         initial_epoch=0)
+    model.save('resnet_omniglot.h5')
