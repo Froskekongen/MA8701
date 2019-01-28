@@ -22,8 +22,9 @@ if __name__ == '__main__':
         n_steps = 5
         n_steps_valid = 2
     else:
-        n_steps = 749
+        n_steps = int(749 / 10)
         n_steps_valid = 31
+    img_size = (224, 224)
 
     print('Doing {0} steps of training and {1} steps of validation.'.format(n_steps, n_steps_valid))
     # See https://keras.io/preprocessing/image/
@@ -32,27 +33,29 @@ if __name__ == '__main__':
         rescale=1. / 255,
         shear_range=0.2,
         zoom_range=0.2,
-        horizontal_flip=True)
+        horizontal_flip=True,)
     datagen_test = ImageDataGenerator(rescale=1. / 255)
 
     train_images = datagen_train.flow_from_directory(args.image_folder + '/train',
-                                                     target_size=(224, 224))
+                                                     target_size=img_size,
+                                                     class_mode='binary')
 
     valid_images = datagen_test.flow_from_directory(args.image_folder + '/validation',
-                                                    target_size=(224, 224))
+                                                    target_size=img_size,
+                                                    class_mode='binary')
 
     resnet50_model = ResNet50(weights=args.weights, include_top=False, pooling='avg')
 
     x = resnet50_model.output
     x = Dense(256, activation='relu')(x)
     x = Dropout(0.5)(x)
-    predictions = Dense(2, activation='softmax')(x)
+    predictions = Dense(1, activation='sigmoid')(x)
     for layer in resnet50_model.layers:
         layer.trainable = False
 
     model = Model(inputs=resnet50_model.input, outputs=predictions)
     model.compile(optimizer='rmsprop',
-                  loss='categorical_crossentropy',
+                  loss='binary_crossentropy',
                   metrics=['accuracy'])
     print('Fitting a model.')
     model.fit_generator(train_images,
