@@ -22,17 +22,16 @@ if __name__ == '__main__':
         n_steps = 5
         n_steps_valid = 2
     else:
-        n_steps = 52
-        n_steps_valid = 13
+        n_steps = 749
+        n_steps_valid = 31
 
     print('Doing {0} steps of training and {1} steps of validation.'.format(n_steps, n_steps_valid))
     # See https://keras.io/preprocessing/image/
     # for details.
     datagen_train = ImageDataGenerator(
         rescale=1. / 255,
-        rotation_range=20,
-        width_shift_range=0.2,
-        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
         horizontal_flip=True)
     datagen_test = ImageDataGenerator(rescale=1. / 255)
 
@@ -57,7 +56,7 @@ if __name__ == '__main__':
     print('Fitting a model.')
     model.fit_generator(train_images,
                         steps_per_epoch=n_steps,
-                        epochs=12,
+                        epochs=3,
                         verbose=1,
                         callbacks=None,
                         validation_data=valid_images,
