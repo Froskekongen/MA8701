@@ -50,9 +50,10 @@ if __name__ == '__main__':
         config = json.load(ff)
     opt_config = config.pop("optimizer")
 
-    n_train_examples = len(list(Path(config["train_path"]).glob("**/*.png")))
+    glob_file_pattern = "**/*.{0}".format(config["input_filetype"])
+    n_train_examples = len(list(Path(config["train_path"]).glob(glob_file_pattern)))
     n_classes = len(list(Path(config["train_path"]).glob("*/**")))
-    n_valid_examples = len(list(Path(config["valid_path"]).glob("**/*.png")))
+    n_valid_examples = len(list(Path(config["valid_path"]).glob(glob_file_pattern)))
     if args.test_run is True:
         n_steps = 10
         n_steps_valid = 5
