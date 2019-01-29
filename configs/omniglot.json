@@ -6,7 +6,7 @@
   "batch_size": 32,
   "epochs": 10,
   "optimizer": {"type": "RMSprop",
-    "params": {"lr": 0.01}},
+    "params": {"lr": 0.001}},
   "train_path": "/lustre1/projects/fs_ma8701_1/omniglot_processed/train",
   "valid_path": "/lustre1/projects/fs_ma8701_1/omniglot_processed/valid"
 }
