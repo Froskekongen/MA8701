@@ -4,6 +4,7 @@
   "input_filetype": "jpg",
   "weights": "imagenet",
   "batch_size": 32,
+  "epochs": 3,
   "optimizer": {"type": "RMSprop",
     "params": {}},
   "train_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/train",

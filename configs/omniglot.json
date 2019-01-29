@@ -4,8 +4,9 @@
   "input_filetype": "png",
   "weights": "imagenet",
   "batch_size": 32,
+  "epochs": 10,
   "optimizer": {"type": "RMSprop",
-    "params": {}},
+    "params": {"lr": 0.01}},
   "train_path": "/lustre1/projects/fs_ma8701_1/omniglot_processed/train",
   "valid_path": "/lustre1/projects/fs_ma8701_1/omniglot_processed/valid"
 }
