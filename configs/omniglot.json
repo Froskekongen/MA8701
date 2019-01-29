@@ -1,7 +1,7 @@
 {
   "model_id": "dogsvscats.h5",
   "model_type": "simple_convnet",
-  "input_filetype": "jpg",
+  "input_filetype": "png",
   "weights": "imagenet",
   "batch_size": 32,
   "optimizer": {"type": "RMSprop",
