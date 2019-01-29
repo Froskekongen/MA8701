@@ -64,7 +64,8 @@ module available
 ## Setting up the python environment
 
 To make sure that everything is as expected, we should inspect what the
-tensorflow module contains and that it works as expected.
+tensorflow module contains and that it works as expected. For a detailed
+intro, look at [this page](https://docs.python-guide.org/dev/virtualenvs/).
 
 First, we load the modules that we need:
 ```
