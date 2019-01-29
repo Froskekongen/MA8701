@@ -196,6 +196,12 @@ kaggle competitions download -c dogs-vs-cats
 ```
 will work.
 
+## Data folder
+
+The avito dataset is available at `/lustre1/projects/fs_ma8701_1/avito` on
+the epic cluster. On `/lustre1/projects/fs_ma8701_1` there are some other
+datasets also available, for experimentation purposes.
+
 
 ## Mirroring external structure locally
 

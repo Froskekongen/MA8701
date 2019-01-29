@@ -1,0 +1,11 @@
+{
+  "model_id": "dogsvscats_resnet.h5",
+  "model_type": "resnet50",
+  "input_filetype": "jpg",
+  "weights": "imagenet",
+  "batch_size": 32,
+  "optimizer": {"type": "RMSprop",
+    "params": {}},
+  "train_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/train",
+  "valid_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/validation"
+}
