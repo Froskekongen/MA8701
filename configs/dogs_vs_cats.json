@@ -1,0 +1,10 @@
+{
+  "model_id": "dogsvscats.h5",
+  "model_type": "simple_convnet",
+  "weights": "imagenet",
+  "batch_size": 16,
+  "optimizer": {"type": "RMSprop",
+    "params": {"lr": 0.001}},
+  "train_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/train",
+  "valid_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/validation"
+}

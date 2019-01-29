@@ -22,6 +22,7 @@ echo "$PWD"
 source ${WORKDIR}/load_tf_modules.sh
 source ${WORKDIR}/model_env/bin/activate
 
-python ${WORKDIR}/simple_image_classifier/image_classifier.py --test_run false
+python ${WORKDIR}/simple_image_classifier/image_classifier.py --test_run false \
+  --config_path="${WORKDIR}/configs/${1}"
 
 deactivate

@@ -154,6 +154,33 @@ Here, we have provided a file `schedule_job.sh`, which contains an end-to-end
 training example on the epic cluster, using the image classifier in
 `simple_image_classifier/omniglot_classifier.py`.
 
+## Controlling experiments using configuration files
+
+When running multiple experiments to create a good model, it is necessary
+to have control over the configuration of the experiment. In this repository,
+we present one way of controlling the experiment: configuration files.
+
+The configuration files should be simple to create and contain all
+information about parameters you want to vary in the experiments.
+Examples are: optimizer configuration, model configurations (e.g.
+number of layers in a neural net).
+
+Here, we store configuration files as simple json files. For example:
+```
+{
+  "model_id": "dogsvscats.h5",
+  "model_type": "simple_convnet",
+  "weights": "imagenet",
+  "batch_size": 16,
+  "optimizer": {"type": "RMSprop",
+    "params": {"lr": 0.001}},
+  "train_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/train",
+  "valid_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/validation"
+}
+```
+This configuration contains information about where to find data,
+what optimizer to use, and what model.
+
 
 ## Creating a kaggle API key
 
