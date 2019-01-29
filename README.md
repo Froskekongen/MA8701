@@ -56,6 +56,11 @@ for loading a tensorflow and pytorch module. To load these modules, run
 source load_tf_modules.sh
 ```
 
+Note: We can see what core module are available by running
+```
+module available
+```
+
 ## Setting up the python environment
 
 To make sure that everything is as expected, we should inspect what the
@@ -218,3 +223,16 @@ the project soon.
 It is convenient to create a `/lustre1/projects/fs_ma8701_1` folder locally,
 to avoid dealing with extra command line arguments when doing fast incremental
 code changes.
+
+
+## For jupyter fans
+
+If you prefer using tools like jupyter notebooks for creating experiments,
+a good alternative with GPU/TPU support is `google colab`. In order to use
+this, you will need a google drive account.
+
+A tutorial on fine tuning an image classifier on `google colab` can be found
+[here](https://colab.research.google.com/github/Hvass-Labs/TensorFlow-Tutorials/blob/master/10_Fine-Tuning.ipynb).
+
+Note that it may be tricky to use all the data in the avito dataset from google colab.
+Using the columnar data should, however, be easy.
