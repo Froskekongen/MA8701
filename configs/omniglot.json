@@ -6,6 +6,6 @@
   "batch_size": 32,
   "optimizer": {"type": "RMSprop",
     "params": {}},
-  "train_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/train",
-  "valid_path": "/lustre1/projects/fs_ma8701_1/dogsvscats/validation"
+  "train_path": "/lustre1/projects/fs_ma8701_1/omniglot_processed/train",
+  "valid_path": "/lustre1/projects/fs_ma8701_1/omniglot_processed/valid"
 }

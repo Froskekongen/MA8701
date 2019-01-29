@@ -41,19 +41,24 @@ if __name__ == '__main__':
     """
     from argparse import ArgumentParser
     parser = ArgumentParser()
-    parser.add_argument('--config_path', required=True)
+    parser.add_argument('--config_path', required=True,
+                        help="Supply a path that contains training confiuguration.")
     parser.add_argument("--test_run", default=True)
     args = parser.parse_args()
     start = datetime.now()
 
+    # We load the configuration needed for the experiment.
     with open(args.config_path) as ff:
         config = json.load(ff)
     opt_config = config.pop("optimizer")
 
+    # Calculate number of samples and number of classes.
     glob_file_pattern = "**/*.{0}".format(config["input_filetype"])
     n_train_examples = len(list(Path(config["train_path"]).glob(glob_file_pattern)))
     n_classes = len(list(Path(config["train_path"]).glob("*/**")))
     n_valid_examples = len(list(Path(config["valid_path"]).glob(glob_file_pattern)))
+    print("Number of classes: {0}, number of training samples: {1}".format(n_classes, n_train_examples))
+
     if args.test_run is True:
         n_steps = 10
         n_steps_valid = 5
@@ -75,15 +80,14 @@ if __name__ == '__main__':
     train_images = datagen_train.flow_from_directory(config["train_path"],
                                                      target_size=img_size,
                                                      class_mode='categorical',
-                                                     classes=['dogs', 'cats'],
                                                      batch_size=config["batch_size"])
 
     valid_images = datagen_test.flow_from_directory(config["valid_path"],
                                                     target_size=img_size,
                                                     class_mode='categorical',
-                                                    classes=['dogs', 'cats'],
                                                     batch_size=config["batch_size"])
 
+    # Define model type.
     if config["model_type"] == "simple_convnet":
         print("Using simple convnet.")
         loaded_model = create_simple_convnet()
@@ -93,16 +97,19 @@ if __name__ == '__main__':
         for layer in loaded_model.layers:
             layer.trainable = False
 
+    # Make a model head. Here we do what is needed for classification.
     x = loaded_model.output
     x = Dense(256, activation='relu')(x)
     x = Dropout(0.5)(x)
     predictions = Dense(n_classes, activation='softmax')(x)
 
+    # Define the actual model and compile it.
     model = Model(inputs=loaded_model.input, outputs=predictions)
     opt = getattr(optimizers, opt_config["type"])(**opt_config["params"])
     model.compile(optimizer=opt,
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
+
     print('Fitting a model.')
     model.fit_generator(train_images,
                         steps_per_epoch=n_steps,
