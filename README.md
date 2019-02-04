@@ -237,3 +237,9 @@ A tutorial on fine tuning an image classifier on `google colab` can be found
 
 Note that it may be tricky to use all the data in the avito dataset from google colab.
 Using the columnar data should, however, be easy.
+
+
+## Tutorials
+
+Here is a tutorial that covers training a model in Keras that uses both tabular data
+and image data: https://www.pyimagesearch.com/2019/02/04/keras-multiple-inputs-and-mixed-data/
