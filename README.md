@@ -188,20 +188,6 @@ This configuration contains information about where to find data,
 what optimizer to use, and what model.
 
 
-## Creating a kaggle API key
-
-For experimenting with data from, e.g., kaggle, we can install the kaggle
-tool (`pip install kaggle`). But to be able to use the api, we need to obtain
-an API key.
-
-Go to `https://www.kaggle.com/USERNAME/account`. Here you can obtain an API-key.
-Copy the contents of the API key to `/home/EPIC_USERNAME/.kaggle/kaggle.json`.
-Now commands like
-```
-kaggle competitions download -c dogs-vs-cats
-```
-will work.
-
 ## Data folder
 
 The avito dataset is available at `/lustre1/projects/fs_ma8701_1/avito` on
