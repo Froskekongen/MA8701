@@ -1,5 +1,10 @@
 # coding: utf8
 """
+Note (Erlend Aune): This example was taken from
+https://gist.github.com/mokemokechicken/2658d036c717a3ed07064aa79a59c82d
+It needs to be modified to run in semi-supervised mode.
+
+
 * VAT: https://arxiv.org/abs/1507.00677
 
 # 参考にしたCode
