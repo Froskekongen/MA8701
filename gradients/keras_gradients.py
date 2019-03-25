@@ -10,7 +10,7 @@ import numpy as np
 
 
 model = Sequential()
-model.add(Dense(8, activation='relu'))
+model.add(Dense(8, input_dim=8, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
@@ -20,5 +20,5 @@ gradients = K.gradients(outputTensor, listOfVariableTensors)
 
 trainingExample = np.random.random((1, 8))
 sess = tf.InteractiveSession()
-sess.run(tf.initialize_all_variables())
+sess.run(tf.global_variables_initializer())
 evaluated_gradients = sess.run(gradients, feed_dict={model.input: trainingExample})
